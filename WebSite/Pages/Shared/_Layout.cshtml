@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Viet IT</title>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+    <link href="~/css/StylePostManager.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <nav class="navbar-header navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow">
+            <div class="div-header container-fluid">
+
+                <a class="navbar-brand font-monospace fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/Img/Canhbuom.jpg" style="width: 50px; height: 50px;" class="rounded-circle">
+                </a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                 @*   @await Html.PartialAsync("_PartialMenuTop")*@
+                </div>
+                <div class="d-flex justify-content-end">
+                    @await Html.PartialAsync("_LoginPartial")
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                        <i class="bi bi-list" style="font-size: 30px;"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div style="z-index:9999999" class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <h2 class="offcanvas-title" id="offcanvasScrollingLabel"><i class="bi bi-menu-button-fill"></i> Menu</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+               @* @await Html.PartialAsync("_PartialMenutopSmalll")*@
+            </div>
+        </div>
+
+    </header>
+    <div class="fill-space">
+        @*<img src="~/signature/vietImage.png" />*@
+    </div>
+    <div class="main" id="main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer">
+        @*@await Component.InvokeAsync("ViewFooter")*@
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/highlight/button/buttonhighlight.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

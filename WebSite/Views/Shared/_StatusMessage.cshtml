@@ -1,0 +1,16 @@
+﻿@model string
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass = Model.StartsWith("Error") ? "danger" : "primary";
+    var mesage = Model;
+    @if (Model.StartsWith("Error"))
+    {
+        mesage = Model.Substring(5);
+    }
+
+
+    <div class="alert alert-@statusMessageClass alert-dismissible fade show" role="alert">
+        <strong><i class="fas fa-check-circle"></i></strong> @mesage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

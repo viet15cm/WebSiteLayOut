@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Authorization
+
+@inject IAuthorizationService authorizationService
+
+@{
+    var resultAuthorization = await authorizationService.AuthorizeAsync(this.User, "Employee");
+    //var listCategory = await categorys.GetParentCategory();
+}
+
+
+<ul class="navbar-menutop-small">
+    <li class="d-flex justify-content-starts navbar-menutop-small-option @NavbarTop.HomeNavClass(ViewContext)">
+        <span>
+            <i class="bi bi-house-door"></i>
+        </span>
+
+        <span>
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                Trang Chủ
+            </a>
+        </span>
+
+    </li>
+
+    <li class="@NavbarTop.PersonalNavClass(ViewContext)">
+        <div class="d-flex justify-content-starts">
+            <span>
+                <i class="bi bi-person-video3"></i>
+            </span>
+
+            <span >
+                <a asp-area="" asp-controller="Home" asp-action="Personal">
+                   Thông Tin Cá Nhân
+                </a>
+            </span>
+        </div>
+    </li>
+
+    <li class=" @NavbarTop.DocsNavClass(ViewContext)">
+        <div class="d-flex justify-content-starts">
+            <span>
+                <i class="bi bi-terminal-plus"></i>
+            </span>
+
+            <span>
+                <a asp-area="" asp-controller="Home" asp-action="Docs">
+                    Hướng Dẫn Lập Trình
+                </a>
+            </span>
+        </div>
+    </li>
+
+    @if (resultAuthorization.Succeeded)
+    {
+        <li class="d-flex justify-content-starts @NavbarTop.CategoryManagerNavClass(ViewContext)">
+            <span>
+                <i class="bi bi-journals"></i>
+            </span>
+            <span>
+                <a asp-area="CategoryManager" asp-controller="Parentcategory" asp-action="index" >Quản Lý Soạn Thảo</a>
+            </span>
+
+        </li>
+    }
+
+</ul>
